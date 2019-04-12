@@ -5,15 +5,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
 @RestController
 public class Controller {
-//    Local file include bien moche
+    //    Local file include bien moche
     @GetMapping("/")
-    String helloWorld(@RequestParam String fichier) throws IOException {
+    String helloWorld(@RequestParam String fichier, @RequestParam String myxss) throws IOException {
         BufferedReader bufferreader = new BufferedReader(new FileReader("/home/simon/.ssh/" + fichier));
         String line;
         StringBuilder answer = new StringBuilder();
@@ -23,6 +22,6 @@ public class Controller {
             answer.append(line);
         }
         System.out.println(answer);
-        return "hey: " + answer;
+        return "hey: " + answer + myxss;
     }
 }
